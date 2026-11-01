@@ -1,0 +1,13 @@
+{
+  "name": "Pearl Library \u2014 TalaRipper workshop (Codespaces)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "mechatroner.rainbow-csv"
+      ]
+    }
+  },
+  "postCreateCommand": "python3 extract_brain.py && python3 -c \"import sqlite3; c=sqlite3.connect('brain_index.sqlite'); print('brain passages:', c.execute('SELECT COUNT(*) FROM brain').fetchone()[0])\""
+}

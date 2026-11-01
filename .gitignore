@@ -1,0 +1,6 @@
+__pycache__/
+canon_out/
+memory.sqlite
+*.pyc
+
+brain_index.sqlite

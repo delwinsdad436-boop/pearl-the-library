@@ -1,0 +1,20 @@
+QUICK COMMANDS (Windows)
+=======================
+
+:: 0) go to your TalaRipper folder
+cd /d "C:\Users\<YOU>\TalaRipper"
+
+:: 1) inspect the plan
+python plan_inspect.py --plan merge_plan.jsonl
+
+:: 2) apply merges safely (backup + lineage tables)
+python guarded_apply.py --db brain_index.sqlite --plan merge_plan.jsonl --threshold 0.99 --mode apply
+
+:: 3) see how many canonical rows remain (view)
+python -c "import sqlite3; c=sqlite3.connect('brain_index.sqlite'); print(c.execute('SELECT COUNT(*) FROM v_brain_canon').fetchone())"
+
+:: 4) export canonical records (optional)
+python export_canon.py --db brain_index.sqlite --out canon.jsonl
+
+:: 5) rollback (optional)
+python guarded_apply.py --db brain_index.sqlite --mode rollback --backup <PATH_TO_BACKUP>
